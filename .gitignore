@@ -11,3 +11,6 @@ media
 *.DS_Store
 .AppleDouble
 .LSOverride
+
+### testdata
+sampledata/

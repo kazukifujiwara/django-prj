@@ -1,0 +1,55 @@
+{% extends 'myapp/base.html' %}
+
+{% block content %}
+
+<div class="row">
+    <div class="col-md-9">
+        <br>
+        <h2>JSON Data Detail</h2>
+        <br>
+        <h3>name: {{ jsondata.name }}</h3>
+        updated at: {{ jsondata.updated_at }}
+        <br>
+        <hr>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>interface</th>
+                    <th>description</th>
+                    <th>is_enabled</th>
+                    <th>is_up</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for interface, data in jsondata.jsondata.get_interfaces.items %}
+                <tr>
+                    <td>{{ interface }}</td>
+                    <td>{{ data.description }}</td>
+                    <td>
+                        {% if data.is_enabled == True %}
+                        <i class="fas fa-check-circle" style="color: green;"></i>
+                        {{ data.is_enabled }}
+                        {% else %}
+                        <i class="fas fa-minus-circle" style="color: gray;"></i>
+                        {{ data.is_enabled }}
+                        {% endif %}
+                    </td>
+                    <td>
+                        {% if data.is_up == True %}
+                        <i class="fas fa-check-circle" style="color: green;"></i>
+                        {{ data.is_up }}
+                        {% else %}
+                        <i class="fas fa-ban" style="color: red;"></i>
+                        {{ data.is_up }}
+                        {% endif %}
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        
+    </div>
+</div>
+
+{% endblock %}
+

@@ -1,0 +1,35 @@
+{% extends 'myapp/base.html' %}
+
+{% block content %}
+
+<div class="row">
+    <div class="col-md-9">
+        <br>
+        <h2>JSON Data List</h2>
+        <br>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>id</th>
+                    <th>name</th>
+                    <th>updated at</th>
+                    <th>data</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for item in jsondata_list %}
+                <tr>
+                    <td><a href="/jsondata_detail/{{ item.id }}">{{ item.id }}</a></td>
+                    <td>{{ item.name }}</td>
+                    <td>{{ item.updated_at }}</td>
+                    <td>{{ item.jsondata | truncatechars:100 }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        
+    </div>
+</div>
+
+{% endblock %}
+
