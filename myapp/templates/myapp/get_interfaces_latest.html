@@ -5,24 +5,26 @@
 <div class="row">
     <div class="col-md-9">
         <br>
-        <h2>JSON Data List</h2>
+        <h2>Get Interfaces</h2>
+        <br>
+        <p>最新版のログのみを表示</p>
         <br>
         <table class="table">
             <thead>
                 <tr>
-                    <th>id</th>
-                    <th>name</th>
+                    <!-- <th>id</th> -->
+                    <th>hostname</th>
                     <th>updated at</th>
                     <th>data</th>
                 </tr>
             </thead>
             <tbody>
-                {% for item in jsondata_list %}
+                {% for item in logs_list %}
                 <tr>
-                    <td><a href="/jsondata_detail/{{ item.id }}">{{ item.id }}</a></td>
-                    <td>{{ item.name }}</td>
+                    <!-- <td><a href="/get_interfaces_detail/{{ item.id }}">{{ item.id }}</a></td> -->
+                    <td><a href="/get_interfaces_detail/{{ item.id }}">{{ item.hostname }}</a></td>
                     <td>{{ item.updated_at }}</td>
-                    <td>{{ item.jsondata | truncatechars:100 }}</td>
+                    <td>{{ item.data | truncatechars:100 }}</td>
                 </tr>
                 {% endfor %}
             </tbody>

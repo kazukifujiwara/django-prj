@@ -1,0 +1,57 @@
+{% extends 'myapp/base.html' %}
+
+{% block content %}
+
+<div class="row">
+    <div class="col-md-9">
+        <br>
+        <h2>Get Interfaces (All)</h2>
+        <br>
+        <p>
+            全ホストの過去データを一覧表示
+        </p>
+        <br>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>id</th>
+                    <th>hostname</th>
+                    <th>updated at</th>
+                    <th>data</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for item in getinterfaces_list %}
+                <tr>
+                    <td><a href="/get_interfaces_detail/{{ item.id }}">{{ item.id }}</a></td>
+                    <td>{{ item.hostname }}</td>
+                    <td>{{ item.updated_at }}</td>
+                    <td>{{ item.data | truncatechars:100 }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        <br>
+        <div class="pagination">
+            <span class="step-links">
+                {% if page_obj.has_previous %}
+                    <a href="?page=1">&laquo; first</a>
+                    <a href="?page={{ page_obj.previous_page_number }}">previous</a>
+                {% endif %}
+        
+                <span class="current">
+                    Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}.
+                </span>
+        
+                {% if page_obj.has_next %}
+                    <a href="?page={{ page_obj.next_page_number }}">next</a>
+                    <a href="?page={{ page_obj.paginator.num_pages }}">last &raquo;</a>
+                {% endif %}
+            </span>
+        </div>
+        <br>
+    </div>
+</div>
+
+{% endblock %}
+

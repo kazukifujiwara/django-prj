@@ -5,7 +5,8 @@ app_name = 'myapp'
 
 urlpatterns = [
     path('', views.Index.as_view(), name='index'),
-    path('jsondata_detail/<int:pk>', views.JsonDataDetail.as_view(), name='jsondata_detail'),
-    path('jsondata_list', views.JsonDataList.as_view(), name='jsondata_list'),
-    path('jsondata_latest', views.JsonDataLatest.as_view(), name='jsondata_latest'),
+    path('get_interfaces_all', views.GetInterfacesList.as_view(), name='get_interfaces_all'),
+    path('get_interfaces_detail/<int:pk>', views.GetInterfacesDetail.as_view(), name='get_interfaces_detail'),
+    path('get_interfaces_latest', views.GetInterfacesLatest.as_view(), name='get_interfaces_latest'),
+    path('get_interfaces_history/<int:pk>', views.GetInterfacesHistory.as_view(), name='get_interfaces_history'),
 ]

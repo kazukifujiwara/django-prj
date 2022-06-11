@@ -1,0 +1,22 @@
+{
+    "Management1": {
+        "is_up": true,
+        "is_enabled": true,
+        "description": "mgmt1"
+    },
+    "Ethernet1": {
+        "is_up": true,
+        "is_enabled": true,
+        "description": "eth1"
+    },
+    "Ethernet2": {
+        "is_up": true,
+        "is_enabled": true,
+        "description": "eth2"
+    },
+    "Ethernet3": {
+        "is_up": false,
+        "is_enabled": false,
+        "description": "eth3"
+    }
+}

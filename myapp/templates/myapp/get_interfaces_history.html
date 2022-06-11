@@ -5,26 +5,25 @@
 <div class="row">
     <div class="col-md-9">
         <br>
-        <h2>JSON Data List (Latest)</h2>
-        <br>
-        {{ jsondata }}
+        <h2>Get Interfaces (History)</h2>
+        <h3>Hostname: {{ hostname }}</h3>
         <br>
         <table class="table">
             <thead>
                 <tr>
                     <th>id</th>
-                    <th>name</th>
+                    <th>hostname</th>
                     <th>updated at</th>
                     <th>data</th>
                 </tr>
             </thead>
             <tbody>
-                {% for item in jsondata_list %}
+                {% for item in logs_list %}
                 <tr>
-                    <td><a href="/jsondata_detail/{{ item.id }}">{{ item.id }}</a></td>
-                    <td>{{ item.name }}</td>
+                    <td><a href="/get_interfaces_detail/{{ item.id }}">{{ item.id }}</a></td>
+                    <td>{{ item.hostname }}</td>
                     <td>{{ item.updated_at }}</td>
-                    <td>{{ item.jsondata | truncatechars:100 }}</td>
+                    <td>{{ item.data | truncatechars:100 }}</td>
                 </tr>
                 {% endfor %}
             </tbody>

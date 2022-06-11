@@ -5,10 +5,11 @@
 <div class="row">
     <div class="col-md-9">
         <br>
-        <h2>JSON Data Detail</h2>
+        <h2>Get Interfaces Detail</h2>
         <br>
-        <h3>name: {{ jsondata.name }}</h3>
-        updated at: {{ jsondata.updated_at }}
+        <h3>name: {{ getinterfaces.hostname }}</h3>
+        updated at: {{ getinterfaces.updated_at }} <br>
+        過去データ一覧はこちら： <a href="{% url 'myapp:get_interfaces_history' getinterfaces.hostname.pk %}">[history view]</a>
         <br>
         <hr>
         <table class="table">
@@ -21,7 +22,7 @@
                 </tr>
             </thead>
             <tbody>
-                {% for interface, data in jsondata.jsondata.get_interfaces.items %}
+                {% for interface, data in getinterfaces.data.items %}
                 <tr>
                     <td>{{ interface }}</td>
                     <td>{{ data.description }}</td>
