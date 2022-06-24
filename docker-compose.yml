@@ -7,7 +7,7 @@ services:
       - "POSTGRES_USER=postgres"
       - "POSTGRES_PASSWORD=postgres"
     volumes:
-      - postgres_volume:/var/lib/postgresql # <名前付きvolume名>:マウントしたいコンテナ内のPATH
+      - postgres_volume:/var/lib/postgresql/data # <名前付きvolume名>:マウントしたいコンテナ内のPATH
     ports:
       - "5432:5432"
 
