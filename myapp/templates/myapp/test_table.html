@@ -23,16 +23,24 @@
             <table class="table table-sm">
                 <thead>
                     <tr>
-                        <th>Name</th>
-                        <th>Email</th>
-                        <th>Website</th>
+                        <th>interface</th>
+                        <th>description</th>
+                        <th>is_enabled</th>
+                        <th>is_up</th>
                     </tr>
                 </thead>
                 <tbody>
+                    <!-- <tr v-for="object in search_objects" :key="object.interface">
+                        <td v-html="highLight(object.interface)"></td>
+                        <td v-html="highLight(object.description)"></td>
+                        <td v-html="highLight(object.is_enabled)"></td>
+                        <td v-html="highLight(object.is_up)"></td>
+                    </tr> -->
                     <tr v-for="object in search_objects" :key="object.id">
                         <td v-html="highLight(object.name)"></td>
                         <td v-html="highLight(object.email)"></td>
                         <td v-html="highLight(object.website)"></td>
+                        <td></td>
                     </tr>
                 </tbody>
             </table>
@@ -81,6 +89,12 @@
 
                 if (searchWord === '') return this.objects;
 
+                // return this.objects.filter(object => {
+                //     return object.interface.includes(searchWord) ||
+                //         object.description.includes(searchWord) ||
+                //         object.is_enabled.includes(searchWord) ||
+                //         object.is_up.includes(searchWord)
+                // })
                 return this.objects.filter(object => {
                     return object.name.includes(searchWord) ||
                         object.email.includes(searchWord) ||
@@ -90,6 +104,7 @@
         },
         mounted() {
             this.objects = JSON.parse('{{ user_data | safe }}')
+            // this.objects = JSON.parse('{{ objects | safe }}')
         }
     })
 </script>

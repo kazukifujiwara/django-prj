@@ -74,6 +74,33 @@ user_data = [
                 }
             ]
 
+sample_interfaces_data = [
+    {
+        "interface": "Ethernet1",
+		"is_up": True,
+		"is_enabled": True,
+		"description": "eth1"
+	},
+	{
+        "interface": "Ethernet2",
+		"is_up": True,
+		"is_enabled": True,
+		"description": "eth2"
+	},
+	{
+        "interface": "Ethernet3",
+		"is_up": False,
+		"is_enabled": False,
+		"description": "eth3"
+	},
+	{
+        "interface": "Management1",
+		"is_up": True,
+		"is_enabled": True,
+		"description": "mgmt1"
+	}
+]
+
 class Index(TemplateView):
     template_name = 'myapp/index.html'
     
@@ -126,5 +153,6 @@ class GetInterfacesDetailTest(DetailView):
     
     def get_context_data(self, *args, **kwargs):
         context = super().get_context_data(*args, **kwargs)
-        context['user_data'] = json.dumps(user_data ,ensure_ascii=False)
+        context['user_data'] = json.dumps(user_data, ensure_ascii=False)
+        # context['objects'] = json.dumps(sample_interfaces_data, ensure_ascii=False)
         return context
