@@ -9,94 +9,34 @@ from django.contrib import messages
 from django.db import models
 from django.core.paginator import Paginator
 
-
-user_data = [
-                {
-                    "id": 1,
-                    "name": "Leanne Graham",
-                    "email": "Sincere@april.biz",
-                    "website": "hildegard.org"
-                },
-                {
-                    "id": 2,
-                    "name": "Ervin Howell",
-                    "email": "Shanna@melissa.tv",
-                    "website": "anastasia.net"
-
-                },
-                {
-                    "id": 3,
-                    "name": "Clementine Bauch",
-                    "email": "Nathan@yesenia.net",
-                    "website": "ramiro.info"
-                },
-                {
-                    "id": 4,
-                    "name": "Patricia Lebsack",
-                    "email": "Julianne.OConner@kory.org",
-                    "website": "kale.biz"
-                },
-                {
-                    "id": 5,
-                    "name": "Chelsey Dietrich",
-                    "email": "Lucio_Hettinger@annie.ca",
-                    "website": "demarco.info"
-                },
-                {
-                    "id": 6,
-                    "name": "Mrs. Dennis Schulist",
-                    "email": "Karley_Dach@jasper.info",
-                    "website": "ola.org"
-                },
-                {
-                    "id": 7,
-                    "name": "Kurtis Weissnat",
-                    "email": "Telly.Hoeger@billy.biz",
-                    "website": "elvis.io"
-                },
-                {
-                    "id": 8,
-                    "name": "Nicholas Runolfsdottir V",
-                    "email": "Sherwood@rosamond.me",
-                    "website": "jacynthe.com"
-                },
-                {
-                    "id": 9,
-                    "name": "Glenna Reichert",
-                    "email": "Chaim_McDermott@dana.io",
-                    "website": "conrad.com"
-                },
-                {
-                    "id": 10,
-                    "name": "Clementina DuBuque",
-                    "email": "Rey.Padberg@karina.biz",
-                    "website": "ambrose.net"
-                }
-            ]
-
+# Boolean -> String に変換しなければならない。
 sample_interfaces_data = [
     {
+        "id": 1,
         "interface": "Ethernet1",
-		"is_up": True,
-		"is_enabled": True,
+		"is_up": "True",
+		"is_enabled": "True",
 		"description": "eth1"
 	},
 	{
+        "id": 2,
         "interface": "Ethernet2",
-		"is_up": True,
-		"is_enabled": True,
+		"is_up": "True",
+		"is_enabled": "True",
 		"description": "eth2"
 	},
 	{
+        "id": 3,
         "interface": "Ethernet3",
-		"is_up": False,
-		"is_enabled": False,
+		"is_up": "False",
+		"is_enabled": "False",
 		"description": "eth3"
 	},
 	{
+        "id": 4,
         "interface": "Management1",
-		"is_up": True,
-		"is_enabled": True,
+		"is_up": "True",
+		"is_enabled": "True",
 		"description": "mgmt1"
 	}
 ]
@@ -153,6 +93,5 @@ class GetInterfacesDetailTest(DetailView):
     
     def get_context_data(self, *args, **kwargs):
         context = super().get_context_data(*args, **kwargs)
-        context['user_data'] = json.dumps(user_data, ensure_ascii=False)
-        # context['objects'] = json.dumps(sample_interfaces_data, ensure_ascii=False)
+        context['objects'] = json.dumps(sample_interfaces_data, ensure_ascii=False)
         return context
