@@ -93,5 +93,20 @@ class GetInterfacesDetailTest(DetailView):
     
     def get_context_data(self, *args, **kwargs):
         context = super().get_context_data(*args, **kwargs)
-        context['objects'] = json.dumps(sample_interfaces_data, ensure_ascii=False)
+        
+        get_interfaces = GetInterfaces.objects.get(id = self.kwargs['pk'])
+        # list(dict) の型でtemplateに値を渡す
+        objects = []
+        for k, v in get_interfaces.data.items():
+            # Searchをする際にstring型でなければならない。
+            objects.append(
+                {
+                    "interface": k,
+                    "description": v["description"],
+                    "is_enabled": str(v["is_enabled"]),
+                    "is_up": str(v["is_up"]) 
+                }
+            )
+        # context['objects'] = json.dumps(sample_interfaces_data, ensure_ascii=False)
+        context['objects'] = json.dumps(objects, ensure_ascii=False)
         return context
