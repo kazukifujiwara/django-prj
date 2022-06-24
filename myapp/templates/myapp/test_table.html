@@ -1,0 +1,96 @@
+{% extends 'myapp/base.html' %}
+
+{% block content %}
+
+<div class="row">
+    <div class="col-md-9">
+        <br>
+        <h2>Get Interfaces Detail</h2>
+        <br>
+        <h3>name: {{ getinterfaces.hostname }}</h3>
+        updated at: {{ getinterfaces.updated_at }} <br>
+        過去データ一覧はこちら： <a href="{% url 'myapp:get_interfaces_history' getinterfaces.hostname.pk %}">[history view]</a>
+        <br>
+        <hr>
+        <div id="app">
+            <div class="form-outline">
+                <input type="text" id="typeText" class="form-control" v-model="search" />
+                <label class="form-label" for="typeText">Search</label>
+            </div>
+            <br>
+            <hr>
+            <br>
+            <table class="table table-sm">
+                <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>Email</th>
+                        <th>Website</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr v-for="object in search_objects" :key="object.id">
+                        <td v-html="highLight(object.name)"></td>
+                        <td v-html="highLight(object.email)"></td>
+                        <td v-html="highLight(object.website)"></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <br>
+        <br>
+        <br>
+    </div>
+</div>
+
+
+
+{% endblock %}
+
+{% block script %}
+<script>
+    new Vue({
+        el: '#app',
+        delimiters: ['[[', ']]'],
+        data: {
+            objects: [],
+            search: '',
+            test: '',
+            test_arr: []
+        },
+        methods: {
+            highLight(text) {
+
+                let searchWord = this.search.trim()
+
+                if (searchWord === '') return text
+
+                if (!text.includes(searchWord)) return text
+
+                const re = new RegExp(searchWord, 'ig');
+
+                return text.replace(re, function (search) {
+                    return '<span style="background-color:yellow;font-weight:bold">' + search + '</span>'
+                })
+            }
+        },
+        computed: {
+            search_objects() {
+
+                let searchWord = this.search.trim()
+
+                if (searchWord === '') return this.objects;
+
+                return this.objects.filter(object => {
+                    return object.name.includes(searchWord) ||
+                        object.email.includes(searchWord) ||
+                        object.website.includes(searchWord)
+                })
+            }
+        },
+        mounted() {
+            this.objects = JSON.parse('{{ user_data | safe }}')
+        }
+    })
+</script>
+{% endblock %}

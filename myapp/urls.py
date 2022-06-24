@@ -9,4 +9,5 @@ urlpatterns = [
     path('get_interfaces_detail/<int:pk>', views.GetInterfacesDetail.as_view(), name='get_interfaces_detail'),
     path('get_interfaces_latest', views.GetInterfacesLatest.as_view(), name='get_interfaces_latest'),
     path('get_interfaces_history/<int:pk>', views.GetInterfacesHistory.as_view(), name='get_interfaces_history'),
+    path('get_interfaces_detail_test/<int:pk>', views.GetInterfacesDetailTest.as_view(), name='get_interfaces_detail_test'),
 ]
